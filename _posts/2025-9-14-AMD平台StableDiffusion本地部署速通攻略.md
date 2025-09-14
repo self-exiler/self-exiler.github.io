@@ -29,15 +29,35 @@ AMD 卡本身没有 CUDA 核，ZLUDA 把 CUDA 指令流即时转译成 ROCm/HIP�
 
 ## 三、安装 ROCm 5.7
 
-1. 首次启动 `A绘世启动器.exe` → 点“一键启动”。
-2. 弹窗提示缺少 HIP SDK → 弹出官方直链下载 ROCm 5.7 完整版并安装。
-3. 6700 XT 需手工补丁，其余6800以下显卡，可对应下载必要库：
-   - 下载 `ROCmLibs-gfx1031-5.7.7z`
-     https://github.com/likelovewant/ROCmLibs-for-gfx1103-AMD780M-APU/releases
-   - 关闭所有调用 ROCm 的程序
-   - 备份并替换：
-     - `rocblas.dll` → `C:\Program Files\AMD\ROCm\5.7\bin\`
-     - 整个 `library` 文件夹 → `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\`
+* 首次启动 `A绘世启动器.exe` → 点“一键启动”。
+* 弹窗提示缺少 HIP SDK → 弹出官方直链下载 ROCm 5.7 完整版并安装。
+* 6700 XT 需手工补丁，其余6800以下显卡，可对应下载必要库：
+
+  - 下载 `ROCmLibs-gfx1031-5.7.7z`
+    https://github.com/likelovewant/ROCmLibs-for-gfx1103-AMD780M-APU/releases
+  - 关闭所有调用 ROCm 的程序
+  - 备份并替换：
+
+    - `rocblas.dll` → `C:\Program Files\AMD\ROCm\5.7\bin\`
+    - 整个 `library` 文件夹 → `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\`
+* 其他：下面把常见 AMD 显卡型号与 ROCm 里用到的 gfx 代号一一对应，照表找即可。
+
+  （资料来源：ROCm 官方文档与 GitCode 博客，2025-06 更新）
+
+  | 显卡型号                           | 核心代号      | gfx 版本        |
+  | ---------------------------------- | ------------- | --------------- |
+  | RX 7900 XTX / XT / 7800 XT         | Navi 31       | gfx1100         |
+  | RX 7700 XT / 7600 XT               | Navi 32/33    | gfx1102         |
+  | RX 6900 XT / 6800 XT / 6800        | Navi 21       | gfx1030         |
+  | RX 6700 XT / 6700 / 6600 XT / 6600 | Navi 22/23    | gfx1031         |
+  | RX 6500 XT / 6400                  | Navi 24       | gfx1034         |
+  | RX 5700 XT / 5700 / 5600 XT / 5600 | Navi 10/12/14 | gfx1010         |
+  | RX 5500 XT / 5500                  | Navi 14       | gfx1012         |
+  | RX Vega 64 / 56 / VII              | Vega 10/20    | gfx900 / gfx906 |
+  | Radeon VII                         | Vega 20       | gfx906          |
+  | Instinct MI100                     | Arcturus      | gfx908          |
+
+  使用注意：ROCm 5.7 官方只正式支持 gfx906、gfx908、gfx90a、gfx1030。gfx1031（6700 XT 等）需要手动替换 rocblas 补丁，gfx1100 系列目前不在支持列表。
 
 ## 四、修复 PyTorch
 
