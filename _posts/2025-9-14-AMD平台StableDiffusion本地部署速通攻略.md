@@ -29,6 +29,7 @@ AMD 卡本身没有 CUDA 核，ZLUDA 把 CUDA 指令流即时转译成 ROCm/HIP�
 
 ## 三、安装 ROCm 5.7
 
+<<<<<<< HEAD
 * 首次启动 `A绘世启动器.exe` → 点“一键启动”。
 * 弹窗提示缺少 HIP SDK → 弹出官方直链下载 ROCm 5.7 完整版并安装。
 * 6700 XT 需手工补丁，其余6800以下显卡，可对应下载必要库：
@@ -58,6 +59,17 @@ AMD 卡本身没有 CUDA 核，ZLUDA 把 CUDA 指令流即时转译成 ROCm/HIP�
   | Instinct MI100                     | Arcturus      | gfx908          |
 
   使用注意：ROCm 5.7 官方只正式支持 gfx906、gfx908、gfx90a、gfx1030。gfx1031（6700 XT 等）需要手动替换 rocblas 补丁，gfx1100 系列目前不在支持列表。
+=======
+1. 首次启动 `A绘世启动器.exe` → 点“一键启动”。
+2. 弹窗提示缺少 HIP SDK → 弹出官方直链下载 ROCm 5.7 完整版并安装。
+3. 6700 XT 需手工补丁，其余6800以下显卡，可对应下载必要库：
+   - 下载 `ROCmLibs-gfx1031-5.7.7z`
+     https://github.com/likelovewant/ROCmLibs-for-gfx1103-AMD780M-APU/releases
+   - 关闭所有调用 ROCm 的程序
+   - 备份并替换：
+     - `rocblas.dll` → `C:\Program Files\AMD\ROCm\5.7\bin\`
+     - 整个 `library` 文件夹 → `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\`
+>>>>>>> 90e14e56a8f057db0cc1e5dd8c14cd551cb1629e
 
 ## 四、修复 PyTorch
 
